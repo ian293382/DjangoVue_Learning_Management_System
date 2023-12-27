@@ -1,0 +1,17 @@
+Todo
+Done-Install virtual environment, create, activate =>  python3 -m venv env
+Done => source ./env/bin/activate
+Done-Install Django => pip install django
+Done-Install django-restframework
+Done-Install django-cors-headers
+Done-Install djoser
+Done-Create Django project
+Done-Config Django setting
+Done-Add Djoser to the urls
+Done-Initialize database
+Done-Install vue and some libraries ( Vue.js Command-Line Interface)  vue create studynet_vue => scss router
+ cd studynet_vue  npm install bulma, npm install axios
+Done-Set up the libraries 
+-Run the servers and test
+in django => python manage.py runserver 
+in Vue => npm run serve 
