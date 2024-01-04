@@ -1,5 +1,16 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <div class="hero is-info is-medium">
+      <div class="hero-body has-text-centered">
+        <h1 class="title">About</h1>
+
+
+      </div>
+    </div>
+
+    <section class="section">
+      This is an about page
+    </section>
+
   </div>
 </template>
