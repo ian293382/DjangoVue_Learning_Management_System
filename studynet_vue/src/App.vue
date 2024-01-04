@@ -5,14 +5,14 @@
 
     <div class="navbar-menu" id="navbar-item">
       <div class="navbar-start">
-        <a href="#" class="navbar-item">Home</a>
-        <a href="#" class="navbar-item">About</a>
+        <a href="/" class="navbar-item">Home</a>
+        <a href="/About" class="navbar-item">About</a>
       </div>
 
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a href="#" class="button is-primary"><strong>Sign up</strong></a>
+            <a href="/sign-up" class="button is-primary"><strong>Sign up</strong></a>
             <a href="#" class="button is-light">Log in</a>
           </div>
         </div>

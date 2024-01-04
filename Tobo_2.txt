@@ -1,8 +1,8 @@
 -Done Clean up the App.Vue and  Home.nue   Vue.js 搭配 Bulma CSS Framework
--Add menu, content and footer
--Create the front page 
--Create an about page
--Create a sign up page
+-Done Add menu, content and footer
+-Done Create the front page 
+-Done Create an about page
+-Done Create a sign up page
 -Create a log in page
 -Convert the menu to a component
 -Convert the footer to a component
