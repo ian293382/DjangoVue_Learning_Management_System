@@ -1,7 +1,7 @@
 <template>
 <div class="nav">
-  <nav class="navbar" role="navigation" aria-label="main navigation" style="min-height: 5rem;">
-    <a href="/" class="navbar-item is-size-4">StudyNet</a>
+  <nav class="navbar is-info" role="navigation" aria-label="main navigation" style="min-height: 5rem;">
+    <a href="/" class="navbar-item is-size-4 white">StudyNet</a>
 
     <div class="navbar-menu" id="navbar-item">
       <div class="navbar-start">
@@ -31,4 +31,8 @@
 
 <style lang="scss">
 @import '../node_modules/bulma';
+
+.white{
+  color: white !important;
+}
 </style>
