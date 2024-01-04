@@ -5,18 +5,19 @@
 
   <router-view/>
 
-  <footer class="footer">
-    <p class="has-text-centered">Copyright (c) 2021</p>
-  </footer>
+  <Footer/>
+  
 </template>
 
 <script>
 import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
 
 export default {
   name: 'App',
   components: {
     Nav,
+    Footer
   }
 }
 
