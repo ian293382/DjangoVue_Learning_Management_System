@@ -1,0 +1,7 @@
+-Finish sign up page and functionality
+-Set up vuex store
+- Initialize vuex on start up
+-Finish log in page and functionality
+-Create very basic my account page 
+    -make it possible to log out
+    
