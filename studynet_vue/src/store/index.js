@@ -4,14 +4,14 @@ export default createStore({
   state: {
     user: {
       token: '',
-      isAuthenticated: falsex``
+      isAuthenticated: false
     }
   },
   getters: {
   },
   mutations: {
     initializeStore(state) {
-      if (localStoreage.getItem('token')) {
+      if (localStorage.getItem('token')) {
         state.user.token = localStoreage.getItem('token')
         state.user.isAuthenticated = true
       } else {
@@ -22,6 +22,10 @@ export default createStore({
     setToken(state, token) {
       state.user.token = token 
       state.user.isAuthenticated = true
+    },
+    removeToken(state) {
+      state.user.token = ''
+      state.user.isAuthenticated = false
     }
   },
   actions: {
