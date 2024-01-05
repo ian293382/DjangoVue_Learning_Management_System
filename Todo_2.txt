@@ -3,6 +3,6 @@
 -Done Create the front page 
 -Done Create an about page
 -Done Create a sign up page
--Create a log in page
--Convert the menu to a component
--Convert the footer to a component
+-Done Create a log in page
+-Done Convert the menu to a component
+-Done Convert the footer to a component
