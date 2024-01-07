@@ -15,16 +15,24 @@
                     <li
                         v-for="lesson in lessons"
                         v-bind:key="lesson.id">
-                        <a href="#">{{ lesson.title }}</a>
+                        <a @click="activeLesson = lesson">{{ lesson.title }}</a>
                     </li>
                    
                 </ul>
             </div>
             <div class="column is-10">
                 <template v-if="$store.state.user.isAuthenticated">
-                    <h2>Introduction</h2>
+                    <template v-if="activeLesson">
+                        <h2>{{ activeLesson.title }}</h2>
+                        {{ activeLesson.long_description }}
+                    </template>
+
+                    <template v-else>
+                        <h2>Introduction</h2>
         
-                    {{ course.long_description }}   
+                        {{ course.long_description }}   
+                    </template>
+               
                 </template>
                 <template v-else>
                     <h2>Restricted access</h2>
@@ -47,7 +55,8 @@ export default {
     data() {
         return {
             course: {},
-            lessons: []
+            lessons: [],
+            activeLesson: null
         }
     },
 
