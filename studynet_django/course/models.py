@@ -1,4 +1,6 @@
+from django.contrib.auth.models import User
 from django.db import models
+
 
 class Category(models.Model):
     title = models.CharField(max_length=255)
@@ -20,8 +22,6 @@ class Course(models.Model):
     def __str__(self):
         return self.title
     
-
-
 class Lesson(models.Model):
     DRAFT = 'draft'
     PUBLISHED = 'published'
@@ -47,6 +47,10 @@ class Lesson(models.Model):
     status = models.CharField(max_length=20, choices=CHOICRS_STATUS, default=PUBLISHED)
     lesson_type = models.CharField(max_length=20, choices=CHOICES_LESSON_TYPE, default=ARTICLE)
 
-
-    
-
+class Comment(models.Model):
+    course = models.ForeignKey(Course, related_name='comments', on_delete=models.CASCADE)
+    lesson = models.ForeignKey(Lesson, related_name='comments', on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    content = models.TextField()
+    created_at = models.DateField(auto_now_add=True)
+    created_by = models.ForeignKey(User, related_name='comments', on_delete=models.CASCADE)
