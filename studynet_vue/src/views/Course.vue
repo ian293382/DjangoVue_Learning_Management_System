@@ -61,7 +61,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="notification"
+                                    <div class="notification is-danger"
                                     v-for="error in errors"
                                     v-bind:key="error">
                                         {{ error }}
