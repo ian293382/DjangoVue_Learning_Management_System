@@ -6,6 +6,9 @@ class Category(models.Model):
     short_description = models.TextField(blank=True, null=True)
     created_at = models.DateField(auto_now_add= True)
 
+    def __str__(self):
+        return self.title
+
 class Course(models.Model):
     categories = models.ManyToManyField(Category)
     title = models.CharField(max_length=255)
@@ -13,3 +16,6 @@ class Course(models.Model):
     short_description = models.TextField(blank=True, null=True)
     long_description = models.TextField(blank=True, null=True)
     created_at = models.DateField(auto_now_add= True)
+
+    def __str__(self):
+        return self.title
