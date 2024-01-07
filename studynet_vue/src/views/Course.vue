@@ -20,9 +20,17 @@
                 </ul>
             </div>
             <div class="column is-10">
-                <h2>Introduction</h2>
+                <template v-if="$store.state.user.isAuthenticated">
+                    <h2>Introduction</h2>
+        
+                    {{ course.long_description }}   
+                </template>
+                <template v-else>
+                    <h2>Restricted access</h2>
 
-                {{ course.long_description }}
+                    <p>You need to have an account to continue!</p>
+                </template>
+
             </div>
          </div>
         </div>
