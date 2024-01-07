@@ -4,8 +4,9 @@
 
         <div class="navbar-menu" id="navbar-item">
             <div class="navbar-start">
-                <a href="/" class="navbar-item">Home</a>
-                <a href="/About" class="navbar-item">About</a>
+                <router-link to="/" class="navbar-item">Home</router-link>
+                <router-link to="/about" class="navbar-item">About</router-link>
+                <router-link to="/courses" class="navbar-item">Courses</router-link>
             </div>
 
         <div class="navbar-end">
