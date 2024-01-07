@@ -1,0 +1,5 @@
+-Add validation to the comment form
+-Add the comment th the list of comments
+-Convert the course list object to a component
+-show newest Courses on the front page
+-Add thumbnails to courses
