@@ -9,7 +9,7 @@
       </div>
   
       <section class="section">
-    
+        <button @click="logout()" class="button is-danger">Log out</button>
       </section>
   
     </div>
