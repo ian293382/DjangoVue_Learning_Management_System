@@ -1,3 +1,3 @@
--Create the course page
+-Done Create the course page
 -Set up app and databasemodel for categories and courses
 -get courses from the database
