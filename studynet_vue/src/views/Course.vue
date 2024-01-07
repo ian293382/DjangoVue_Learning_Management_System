@@ -12,11 +12,12 @@
                 <h2>Table of contents</h2>
 
                 <ul>
-                    <li><a href="#">Introduction</a></li>
-                    <li><a href="#">Get started</a></li>
-                    <li><a href="#">Part I</a></li>
-                    <li><a href="#">Part II</a></li>
-                    <li><a href="#">Summary</a></li>
+                    <li
+                        v-for="lesson in lessons"
+                        v-bind:key="lesson.id">
+                        <a href="#">{{ lesson.title }}</a>
+                    </li>
+                   
                 </ul>
             </div>
             <div class="column is-10">
@@ -45,7 +46,8 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            course: []
+            course: {},
+            lessons: []
         }
     },
 
@@ -59,7 +61,8 @@ export default {
             .then(response => {
                 console.log(response.data)
               
-                this.course = response.data
+                this.course = response.data.course
+                this.lessons = response.data.lessons
             })
     }
 }
