@@ -22,7 +22,7 @@ class Course(models.Model):
     
 
 
-class Lessons(models.Model):
+class Lesson(models.Model):
     DRAFT = 'draft'
     PUBLISHED = 'published'
 
@@ -46,7 +46,7 @@ class Lessons(models.Model):
     long_description = models.TextField(blank=True, null=True)
     status = models.CharField(max_length=20, choices=CHOICRS_STATUS, default=PUBLISHED)
     lesson_type = models.CharField(max_length=20, choices=CHOICES_LESSON_TYPE, default=ARTICLE)
-    
+
 
     
 
