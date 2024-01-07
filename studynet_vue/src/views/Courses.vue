@@ -23,7 +23,11 @@
             <div class="column is-10">
               <div class="columns is-multiline">
                 <!-- 排列圖片從這個block開始 -->
-                <div class="column is-4">
+                <div class="column is-4"
+                     v-for="course in courses"
+                     v-bind:key="courses.id"
+                >
+
                   <div class="card">
                     <div class="card-image">
                       <figure class="image is-4by3">
@@ -34,86 +38,18 @@
                     <div class="card-content">
                       <div class="media">
                         <div class="media-content">
-                          <p class="is-size-5">Build a social network</p>
+                          <p class="is-size-5">{{ course.title }}</p>
                         </div>
                       </div>
   
                       <div class="content">
-                        <p>Learn the basics bla bla bla...</p>
+                        <p>{{ course.short_description }}</p>
                         <a href="#">More</a>
                       </div>
                     </div>
                   </div>
                 </div>
-  
-                <div class="column is-4">
-                  <div class="card">
-                    <div class="card-image">
-                      <figure class="image is-4by3">
-                        <img src="http://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                      </figure>
-                    </div>
-  
-                    <div class="card-content">
-                      <div class="media">
-                        <div class="media-content">
-                          <p class="is-size-5">Build a social network</p>
-                        </div>
-                      </div>
-  
-                      <div class="content">
-                        <p>Learn the basics bla bla bla...</p>
-                        <a href="#">More</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-  
-                <div class="column is-4">
-                  <div class="card">
-                    <div class="card-image">
-                      <figure class="image is-4by3">
-                        <img src="http://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                      </figure>
-                    </div>
-  
-                    <div class="card-content">
-                      <div class="media">
-                        <div class="media-content">
-                          <p class="is-size-5">Build a social network</p>
-                        </div>
-                      </div>
-  
-                      <div class="content">
-                        <p>Learn the basics bla bla bla...</p>
-                        <a href="#">More</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-  
-                <div class="column is-4">
-                  <div class="card">
-                    <div class="card-image">
-                      <figure class="image is-4by3">
-                        <img src="http://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                      </figure>
-                    </div>
-  
-                    <div class="card-content">
-                      <div class="media">
-                        <div class="media-content">
-                          <p class="is-size-5">Build a social network</p>
-                        </div>
-                      </div>
-  
-                      <div class="content">
-                        <p>Learn the basics bla bla bla...</p>
-                        <a href="#">More</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+         
   
                 <div class="column is-12">
                     <nav class="pagination">
@@ -142,3 +78,26 @@
     </div>
   </template>
   
+<script>
+import axios from 'axios';
+
+export default {
+    data() {
+        return {
+            courses: []
+        }
+    },
+
+    mounted() {
+        console.log('mounted')
+        axios
+            .get('/courses/')
+            .then(response => {
+                console.log(response.data)
+              
+                this.courses = response.data
+            })
+    }
+}
+
+</script>
