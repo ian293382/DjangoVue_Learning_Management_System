@@ -2,7 +2,7 @@
     <div class="courses">
       <div class="hero is-info is-medium">
         <div class="hero-body has-text-centered">
-          <h1 class="title">The title of the Course</h1>
+          <h1 class="title">{{ course.title }}</h1>
         </div>
       </div>
       <section class="section">
@@ -22,10 +22,38 @@
             <div class="column is-10">
                 <h2>Introduction</h2>
 
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel magni tempore quisquam adipisci, assumenda impedit fugiat officia veritatis dignissimos voluptatum nemo nesciunt quas quis dolores dicta, commodi placeat ab reprehenderit.</p>
+                {{ course.long_description }}
             </div>
          </div>
         </div>
       </section>
     </div>
   </template>
+
+
+<script>
+import axios from 'axios';
+
+export default {
+    data() {
+        return {
+            course: []
+        }
+    },
+
+    mounted() {
+        console.log('mounted')
+
+        const slug = this.$route.params.slug
+
+        axios
+            .get(`/courses/${slug}`)
+            .then(response => {
+                console.log(response.data)
+              
+                this.course = response.data
+            })
+    }
+}
+
+</script>
