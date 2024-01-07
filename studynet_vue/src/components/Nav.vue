@@ -1,6 +1,7 @@
 <template>
     <nav class="navbar is-info" role="navigation" aria-label="main navigation" style="min-height: 5rem;">
-        <a href="/" class="navbar-item is-size-4 white">StudyNet</a>
+      
+        <router-link to="/" class="navbar-item is-size-4 white">StudyNet</router-link>
 
         <div class="navbar-menu" id="navbar-item">
             <div class="navbar-start">

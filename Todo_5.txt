@@ -1,5 +1,5 @@
 -Done Create new page for course deatil
 -Done Restrict access to the course 
--Hide login/sign up buttons in menu when authenticated
--Add link to my account in the menu
+-Done Hide login/sign up buttons in menu when authenticated
+-Done Add link to my account in the menu
 -Delete token in the backend when log out 
