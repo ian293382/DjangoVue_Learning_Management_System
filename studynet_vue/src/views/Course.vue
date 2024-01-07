@@ -25,6 +25,30 @@
                     <template v-if="activeLesson">
                         <h2>{{ activeLesson.title }}</h2>
                         {{ activeLesson.long_description }}
+
+                        <hr>
+
+                        <form v-on:submit.prevent="submitComment()">
+                            <div class="field">
+                                <label class="label">Name</label>
+                                <div class="control">
+                                    <input type="text" class="input" v-model="comment.name">
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label class="label">Content</label>
+                                <div class="control">
+                                    <textarea class="textarea" v-model="comment.content"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <div class="control">
+                                    <button class="button is-link">Submmit</button>
+                                </div>
+                            </div>
+                        </form>
                     </template>
 
                     <template v-else>
@@ -56,7 +80,12 @@ export default {
         return {
             course: {},
             lessons: [],
-            activeLesson: null
+            activeLesson: null,
+            comment: {
+                name: '',
+                content: '',
+
+            }
         }
     },
 
@@ -73,6 +102,23 @@ export default {
                 this.course = response.data.course
                 this.lessons = response.data.lessons
             })
+    },
+    methods: {
+        submitComment() {
+            console.log('submitComment')
+
+            axios
+                .post(`/courses/${this.course.slug}/${this.activeLesson.slug}/`, this.comment)
+                .then(response => {
+                    this.comment.name = ''
+                    this.comment.content = ''
+
+                    alert('The comment was added!')
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }
     }
 }
 
