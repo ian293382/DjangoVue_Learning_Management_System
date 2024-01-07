@@ -144,7 +144,7 @@ export default {
                     this.comment.name = ''
                     this.comment.content = ''
 
-                    alert('The comment was added!')
+                    this.comments.push(response.data)
                 })
                 .catch(error => {
                     console.log(error)

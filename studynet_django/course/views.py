@@ -44,6 +44,8 @@ def add_comment(request, course_slug, lesson_slug):
 
     comment = Comment.objects.create(course=course, lesson=lesson, name=name, content=content, created_by=request.user)
 
-    return Response({'message': 'The comment was added!'})
+    serializer = CommentSerializer(comment)
+
+    return Response(serializer.data)
 
 
