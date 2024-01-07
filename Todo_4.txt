@@ -1,0 +1,5 @@
+-Done Create the course page
+-Set up app and databasemodel for categories and courses
+ => ac:admin 
+    pw:123qweASD
+-get courses from the database
