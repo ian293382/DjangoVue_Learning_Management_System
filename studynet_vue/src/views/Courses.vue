@@ -13,9 +13,10 @@
                 <p class="menu-label">Categories</p>
                 <ul class="menu-list">
                   <li><a href="" class="is-active">All courses</a></li>
-                  <li><a href="">Programming</a></li>
-                  <li><a href="">Design</a></li>
-                  <li><a href="">UX</a></li>
+                    <li v-for="category in categories"
+                        v-bind:key="category.id">
+                        <a href="">{{ category.title }}</a>
+                    </li>
                 </ul>
               </aside>
             </div>
@@ -80,7 +81,8 @@ export default {
                 .get('/courses/get_categories/')
                 .then(response => {
                     console.log(response.data);
-
+                    
+                    this.categories = response.data
                 })
 
         await axios
