@@ -1,98 +1,113 @@
 <template>
     <div class="courses">
-      <div class="hero is-info is-medium">
-        <div class="hero-body has-text-centered">
-          <h1 class="title">Course</h1>
-        </div>
-      </div>
-      <section class="section">
-        <div class="container">
-          <div class="columns">
-            <div class="column is-2">
-              <aside class="menu">
-                <p class="menu-label">Categories</p>
-                <ul class="menu-list">
-                  <li><a href="" class="is-active">All courses</a></li>
-                    <li v-for="category in categories"
-                        v-bind:key="category.id">
-                        <a href="">{{ category.title }}</a>
-                    </li>
-                </ul>
-              </aside>
+        <div class="hero is-info">
+            <div class="hero-body has-text-centered">
+                <h1 class="title">Courses</h1>
             </div>
-  
-            <div class="column is-10">
-              <div class="columns is-multiline">
-                <!-- 排列圖片從這個block開始 -->
-                <div class="column is-4"
-                     v-for="course in courses"
-                     v-bind:key="courses.id"
-                >
-                    <CourseItem :course="course"/>
-               </div>
-         
-  
-                <div class="column is-12">
-                    <nav class="pagination">
-                        <a href="" class="pagination-previous">Previous</a>
-                        <a href="" class="pagination-next">Next</a>
+        </div>
 
-                        <ul class="pagination-list">
-                            <li>
-                                <a href="" class="pagination-link is-current">1</a>
-                            </li>
-                            <li>
-                                <a href="" class="pagination-link">2</a>
-                            </li>
-                            <li>
-                                <a href="" class="pagination-link">3</a>
-                            </li>
-                        </ul>
-                    </nav>
+        <section class="section">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-2">
+                        <aside class="menu">
+                            <p class="menu-label">Categories</p>
+
+                            <ul class="menu-list">
+                                <li>
+                                    <a 
+                                        v-bind:class="{'is-active': !activeCategory}"
+                                        @click="setActiveCategory(null)"
+                                    >
+                                        All courses
+                                    </a>
+                                </li>
+                                <li
+                                    v-for="category in categories"
+                                    v-bind:key="category.id"
+                                    @click="setActiveCategory(category)"
+                                >
+                                    <a>{{ category.title }}</a>
+                                </li>
+                            </ul>
+                        </aside>
+                    </div>
+
+                    <div class="column is-10">
+                        <div class="columns is-multiline">
+                            <div 
+                                class="column is-4"
+                                v-for="course in courses"
+                                v-bind:key="course.id"
+                            >
+                                <CourseItem :course="course" />
+                            </div>
+
+                            <div class="column is-12">
+                                <nav class="pagination">
+                                    <a class="pagination-previous">Previous</a>
+                                    <a class="pagination-next">Next</a>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-  
-              </div>
             </div>
-          </div>
-        </div>
-      </section>
+        </section>
     </div>
-  </template>
-  
+</template>
+
 <script>
-import CourseItem from '@/components/CourseItem.vue';
-import axios from 'axios';
+import axios from 'axios'
+
+import CourseItem from '@/components/CourseItem.vue'
 
 export default {
     data() {
         return {
             courses: [],
             categories: [],
-            activeCategory: null,
-        };
+            activeCategory: null
+        }
     },
     components: {
-        CourseItem 
+        CourseItem
     },
     async mounted() {
-        console.log('mounted');
+        console.log('mounted')
 
         await axios
-                .get('/courses/get_categories/')
-                .then(response => {
-                    console.log(response.data);
-                    
-                    this.categories = response.data
-                })
+            .get('/courses/get_categories/')
+            .then(response => {
+                console.log(response.data)
 
-        await axios
-                .get('/courses/')
-                .then(response => {
-                console.log(response.data);
-                this.courses = response.data;
-        });
+                this.categories = response.data
+            })
+        
+        this.getCourses()
     },
-    
-}
+    methods: {
+        setActiveCategory(category) {
+            console.log(category)
+            this.activeCategory = category
 
+            this.getCourses()
+        },
+        getCourses() {
+            let url = '/courses/'
+
+            if (this.activeCategory) {
+                url += '?category_id=' + this.activeCategory.id
+            }
+
+            axios
+                .get(url)
+                .then(response => {
+                    console.log(response.data)
+
+                    this.courses = response.data
+                })
+        }
+    }
+}
 </script>
