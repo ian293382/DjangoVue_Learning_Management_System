@@ -3,9 +3,14 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-from .models import Course, Lesson, Comment
-from .serializers import CourseListSerializer, CourseDetailSerializer, LessonsListSerializer, CommentSerializer
+from .models import Course, Lesson, Comment,Category
+from .serializers import CourseListSerializer, CourseDetailSerializer, LessonsListSerializer, CommentSerializer,CategorySerializer
 
+@api_view(['GET'])
+def get_categories(request):
+    categories = Category.objects.all()
+    serializer = CategorySerializer(categories, many=True)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 def get_courses(request):

@@ -65,19 +65,29 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            courses: []
+            courses: [],
+            categories: [],
+            activeCategory: null,
         };
     },
     components: {
         CourseItem 
     },
-    mounted() {
+    async mounted() {
         console.log('mounted');
-        axios
-            .get('/courses/')
-            .then(response => {
-            console.log(response.data);
-            this.courses = response.data;
+
+        await axios
+                .get('/courses/get_categories/')
+                .then(response => {
+                    console.log(response.data);
+
+                })
+
+        await axios
+                .get('/courses/')
+                .then(response => {
+                console.log(response.data);
+                this.courses = response.data;
         });
     },
     
