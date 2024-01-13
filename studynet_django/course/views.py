@@ -7,12 +7,16 @@ from .models import Course, Lesson, Comment,Category
 from .serializers import CourseListSerializer, CourseDetailSerializer, LessonsListSerializer, CommentSerializer,CategorySerializer
 
 @api_view(['GET'])
+@authentication_classes([])
+@permission_classes([])
 def get_categories(request):
     categories = Category.objects.all()
     serializer = CategorySerializer(categories, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
+@authentication_classes([])
+@permission_classes([])
 def get_courses(request):
     # 如果有 category_id 則用 courses filter  如果沒有courses.get.all()
     category_id = request.GET.get('category_id', '')
