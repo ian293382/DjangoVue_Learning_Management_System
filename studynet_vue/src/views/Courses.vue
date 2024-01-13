@@ -76,6 +76,8 @@ export default {
     async mounted() {
         console.log('mounted')
 
+        document.title = 'Courses | StudyNet'
+
         await axios
             .get('/courses/get_categories/')
             .then(response => {
