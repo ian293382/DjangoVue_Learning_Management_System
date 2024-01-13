@@ -1,0 +1,7 @@
+-Create database model for quizzed
+-Register Quiz in admin and add quiz 
+-Make a new serializer
+-Make a new view
+-When opening a quiz, load quextions
+-Mkae it possible to answer a quiz
+-Disable comments for quizzes
