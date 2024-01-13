@@ -14,3 +14,12 @@
 
   </div>
 </template>
+
+<script>
+export default {
+  mounted() {
+    console.log ('mounted')
+    document.title = 'About | StudyNet'
+  }
+}
+</script>
