@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
 
 from .models import Course, Lesson, Comment,Category
 from .serializers import CourseListSerializer, CourseDetailSerializer, LessonsListSerializer, CommentSerializer,CategorySerializer
@@ -26,6 +26,8 @@ def get_courses(request):
 
 
 @api_view(['GET'])
+@authentication_classes([])
+@permission_classes([])
 def get_frontpage_courses(request):
     courses = Course.objects.all()[0:4]
     serializer = CourseListSerializer(courses, many=True)
