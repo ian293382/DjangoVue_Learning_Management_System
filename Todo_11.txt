@@ -4,4 +4,4 @@
 -DONE Make a new view
 -DONE When opening a quiz, load quextions
 -DONE Make it possible to answer a quiz
--Disable comments for quizzes
+-DONE Disable comments for quizzes
