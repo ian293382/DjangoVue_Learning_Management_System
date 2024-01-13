@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, Course, Lesson, Comment
+from .models import Category, Course, Lesson, Comment, Quiz
 
 
 class LessonCommentInline(admin.TabularInline):

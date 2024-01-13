@@ -1,4 +1,4 @@
--Create database model for quizzed
+-DONE Create database model for quizzed
 -Register Quiz in admin and add quiz 
 -Make a new serializer
 -Make a new view
