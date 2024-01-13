@@ -40,7 +40,7 @@
           </div>
 
           <div class="column is-12 has-text-centered">
-            <a href="#" class="button is-info is-size-3 mt-6 mb-6">Click to get started</a>
+            <a href="/sign-up" class="button is-info is-size-3 mt-6 mb-6">Click to get started</a>
           </div>
 
           <hr>
@@ -79,7 +79,7 @@ export default {
     console.log('mounted')
 
     document.title = 'Welcome | StudyNet'
-    
+
     axios
           .get('/courses/get_frontpage_courses/')
           .then(response => {
