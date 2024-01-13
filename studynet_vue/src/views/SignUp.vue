@@ -70,6 +70,9 @@
               errors: []
           }
       },
+      mounted(){
+        document.title = 'SignUp | StudyNet'
+      },
       methods: {
           submitForm() {
               console.log('submitForm')
