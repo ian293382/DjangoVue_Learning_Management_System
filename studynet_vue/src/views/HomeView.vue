@@ -45,7 +45,7 @@
 
           <hr>
 
-          <div class="column is-3"
+          <div class="column is-3git"
                 v-for="course in courses"
                 v-bind:key="courses.id"
           >
@@ -78,6 +78,8 @@ export default {
   mounted() {
     console.log('mounted')
 
+    document.title = 'Welcome | StudyNet'
+    
     axios
           .get('/courses/get_frontpage_courses/')
           .then(response => {
