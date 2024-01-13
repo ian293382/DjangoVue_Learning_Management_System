@@ -35,29 +35,37 @@
                                     <h3>{{ quiz.question }}</h3>
 
                                     <div class="control">
-                                        <label for="" class="radio">
+                                        <label class="radio">
                                             <input type="radio" :value="quiz.op1" v-model="selectedAnswer">
-                                                {{ quiz.op1 }}
-                                         </label>
-                                    </div>
-                         
-                                    <div class="control">
-                                        <label for="" class="radio">
-                                            <input type="radio" :value="quiz.op2" v-model="selectedAnswer">
-                                                {{ quiz.op2 }}
-                                         </label>
-                                    </div>
-                                
-                                    <div class="control">
-                                        <label for="" class="radio">
-                                            <input type="radio" :value="quiz.op3" v-model="selectedAnswer">
-                                                {{ quiz.op3 }}
+                                            {{ quiz.op1 }}
                                         </label>
                                     </div>
-                                    
-                                    <div class="control mt-4">
-                                        <button class="button is-info">Submit</button>
+
+                                    <div class="control">
+                                        <label  class="radio">
+                                            <input type="radio" :value="quiz.op2" v-model="selectedAnswer">
+                                            {{ quiz.op2 }}
+                                        </label>
                                     </div>
+
+                                    <div class="control">
+                                        <label  class="radio">
+                                            <input type="radio" :value="quiz.op3" v-model="selectedAnswer">
+                                            {{ quiz.op3 }}
+                                        </label>
+                                    </div>
+
+                                    <div class="control mt-4">
+                                        <button class="button is-info" @click="submitQuiz">Submit</button>
+                                    </div>
+                                </template>
+
+                                <template v-if="quizResult =='correct'">
+                                    <div class="notification is-success mt-4">Correct :-D</div>
+                                </template>
+
+                                <template v-if="quizResult == 'incorrect'">
+                                    <div class="notification is-danger mt-4">Wrong :-( plz try again</div>
                                 </template>
 
                                 <article 
@@ -134,6 +142,7 @@ export default {
             errors: [],
             quiz: {},
             selectedAnswer: '',
+            quizResult: null,
             comment: {
                 name: '',
                 content: ''
@@ -156,6 +165,19 @@ export default {
         document.title = this.course.title + ' | StudyNet'
     },
     methods: {
+        submitQuiz() {
+            this.quizResult = null
+
+            if (this.selectedAnswer) {
+                if (this.selectedAnswer === this.quiz.answer) {
+                    this.quizResult = 'correct'
+                } else {
+                    this.quizResult = 'incorrect'
+                }
+            } else {
+                alert('Select answer first')
+            }
+        },
         submitComment() {
             console.log('submitComment')
 

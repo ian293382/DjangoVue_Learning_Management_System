@@ -2,6 +2,6 @@
 -DONE Register Quiz in admin and add quiz 
 -DONE Make a new serializer
 -DONE Make a new view
-- DONE When opening a quiz, load quextions
--Mkae it possible to answer a quiz
+-DONE When opening a quiz, load quextions
+-DONE Make it possible to answer a quiz
 -Disable comments for quizzes
