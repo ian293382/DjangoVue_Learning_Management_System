@@ -7,6 +7,6 @@
 -Done Update "Get started button on the front page"
 -Done Lesson not listed on front page when signed out
 -Done Categories not listed on front page when signed out 
--Courses not listen when signed out 
--Course contents not showing when signed out 
--Prevent loading data from course (when not signed in )
+-Done Courses not listen when signed out 
+-Done Course contents not showing when signed out 
+-Done Prevent loading data from course (when not signed in )
