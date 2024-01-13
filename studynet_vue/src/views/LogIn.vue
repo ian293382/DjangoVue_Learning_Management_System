@@ -62,6 +62,9 @@
               errors: []
           }
       },
+      mounted(){
+        document.title = 'Login | StudyNetg'
+      },
       methods: {
           submitForm() {
               console.log('submitForm')
