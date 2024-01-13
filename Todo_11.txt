@@ -1,0 +1,7 @@
+-DONE Create database model for quizzed
+-DONE Register Quiz in admin and add quiz 
+-DONE Make a new serializer
+-DONE Make a new view
+-DONE When opening a quiz, load quextions
+-DONE Make it possible to answer a quiz
+-DONE Disable comments for quizzes
