@@ -1,5 +1,5 @@
 -DONE Create database model for quizzed
--Register Quiz in admin and add quiz 
+-DONE Register Quiz in admin and add quiz 
 -Make a new serializer
 -Make a new view
 -When opening a quiz, load quextions
