@@ -1,0 +1,11 @@
+-Work with the admin section
+    -Fix plural name for categories
+    -Show more information for lessons
+    -Show comments
+    -Inline comments
+-Set the window title
+-Update "Get started button on the front page"
+-Categories not listed on front page when signed out 
+-Courses not listen whem signed out 
+-Course contents not showing when signed out 
+-Prevent loading data from course (when not signed in )
