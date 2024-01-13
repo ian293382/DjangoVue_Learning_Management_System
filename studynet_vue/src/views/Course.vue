@@ -31,6 +31,35 @@
 
                                 <hr>
 
+                                <template v-if="activeLesson.lesson_type === 'quiz'">
+                                    <h3>{{ quiz.question }}</h3>
+
+                                    <div class="control">
+                                        <label for="" class="radio">
+                                            <input type="radio" :value="quiz.op1" v-model="selectedAnswer">
+                                                {{ quiz.op1 }}
+                                         </label>
+                                    </div>
+                         
+                                    <div class="control">
+                                        <label for="" class="radio">
+                                            <input type="radio" :value="quiz.op2" v-model="selectedAnswer">
+                                                {{ quiz.op2 }}
+                                         </label>
+                                    </div>
+                                
+                                    <div class="control">
+                                        <label for="" class="radio">
+                                            <input type="radio" :value="quiz.op3" v-model="selectedAnswer">
+                                                {{ quiz.op3 }}
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="control mt-4">
+                                        <button class="button is-info">Submit</button>
+                                    </div>
+                                </template>
+
                                 <article 
                                     class="media box"
                                     v-for="comment in comments"
@@ -103,6 +132,8 @@ export default {
             comments: [],
             activeLesson: null,
             errors: [],
+            quiz: {},
+            selectedAnswer: '',
             comment: {
                 name: '',
                 content: ''
@@ -158,7 +189,19 @@ export default {
         setActiveLesson(lesson) {
             this.activeLesson = lesson
 
-            this.getComments()
+            if (lesson && lesson.lesson_type === 'quiz')  {
+                this.getQuiz()
+            } else {
+                this.getComments()
+            }
+           
+        },
+        getQuiz() {
+            axios.get(`/courses/${this.course.slug}/${this.activeLesson.slug}/get-quiz/`)
+                .then(response => {
+                    console.log(response.data);
+                    this.quiz = response.data;
+                })
         },
         getComments() {
             axios
