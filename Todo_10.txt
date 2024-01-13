@@ -1,4 +1,4 @@
--Work with the admin section
+-Done Work with the admin section
     -Fix plural name for categories
     -Show more information for lessons
     -Show comments

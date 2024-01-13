@@ -109,19 +109,20 @@ export default {
             }
         }
     },
-    mounted() {
-        console.log('mounted')
+    async mounted() {
+            console.log('mounted')
 
-        const slug = this.$route.params.slug
+            const slug = this.$route.params.slug
 
-        axios
-            .get(`/courses/${slug}/`)
-            .then(response => {
-                console.log(response.data)
+            await axios
+                .get(`/courses/${slug}/`)
+                .then(response => {
+                    console.log(response.data)
 
-                this.course = response.data.course
-                this.lessons = response.data.lessons
-            })
+                    this.course = response.data.course
+                    this.lessons = response.data.lessons
+                })
+        document.title = this.course.title + ' | StudyNet'
     },
     methods: {
         submitComment() {
