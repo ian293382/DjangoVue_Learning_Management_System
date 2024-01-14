@@ -2,6 +2,6 @@
 -Start progress tracking implementation
     -DONE create new app
     -DONE Database model
-    -Vies
-    -Urls 
+    -DONE Vies
+    -DONE Urls 
     -Check test data

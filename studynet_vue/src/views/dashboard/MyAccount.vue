@@ -20,6 +20,13 @@
 import axios from 'axios'
 
 export default {
+    mounted() {
+      axios
+          .get('activities/get_active_courses/')
+          .then(response=> {
+            console.log(response.data)
+          })
+    },
     methods: {
         logout() {
             console.log('logout')
