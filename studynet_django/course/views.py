@@ -1,10 +1,11 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render
 
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 
 from .models import Course, Lesson, Comment,Category
-from .serializers import CourseListSerializer, CourseDetailSerializer, LessonsListSerializer, CommentSerializer,CategorySerializer , QuizSerializer
+from .serializers import CourseListSerializer, CourseDetailSerializer, LessonsListSerializer, CommentSerializer,CategorySerializer , QuizSerializer, UserSerializer
 
 @api_view(['GET'])
 def get_quiz(request, course_slug, lesson_slug):
@@ -84,4 +85,15 @@ def add_comment(request, course_slug, lesson_slug):
 
     return Response(serializer.data)
 
+@api_view(['GET'])
+def get_author_courses(request, user_id):
+    user = User.objects.get(pk=user_id)
+    courses = user.courses.all()
 
+    user_serializer = UserSerializer(user, many=False)
+    courses_serializer = CourseListSerializer(courses, many=True)
+
+    return Response({
+        'courses': courses_serializer.data,
+        'created_by': user_serializer.data
+    })
