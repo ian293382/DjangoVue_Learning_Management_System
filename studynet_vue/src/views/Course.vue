@@ -86,7 +86,6 @@ import AddComment from '@/components/AddComment';
 import Quiz from '@/components/Quiz';
 import Video from '@/components/Video';
 
-
 export default {
     components: {
         CourseComment,
@@ -133,6 +132,15 @@ export default {
             } else {
                 this.getComments()
             }
+
+            this.trackStarted() 
+        },
+        trackStarted(){
+            axios
+              .post(`/activities/track_started/${this.$route.params.slug}/${this.activeLesson.slug}/`)
+              .then(response => {
+                console.log(response.data)
+              })
         },
         getQuiz() {
             axios

@@ -28,8 +28,8 @@ def track_started(request, course_slug, lesson_slug):
     if Activity.objects.filter(created_by=request.user, course=course, lesson=lesson).count() ==0:
         Activity.objects.create(course=course, lesson=lesson, created_by=request.user)
 
-    activity =  Activity.objects.filter(created_by=request.user, course=course, lesson=lesson)
+    activity =  Activity.objects.get(created_by=request.user, course=course, lesson=lesson)
 
     serializer = ActivitySerializer(activity)
-    
+
     return Response(serializer.data)
