@@ -12,7 +12,7 @@ class Activity(models.Model):
         (DONE, 'Done')
     )
 
-    couser = models.ForeignKey(Course, related_name='activities', on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, related_name='activities', on_delete=models.CASCADE)
     Losson = models.ForeignKey(Lesson, related_name='activities', on_delete=models.CASCADE)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=STARTED)
     created_by = models.ForeignKey(User, related_name='activities', on_delete=models.CASCADE)
