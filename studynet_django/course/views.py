@@ -11,6 +11,20 @@ from .serializers import CourseListSerializer, CourseDetailSerializer, LessonsLi
 def create_course(request):
     print(request.data)
 
+    course = Course.objects.create(
+        title=request.data.get('title'),
+        short_description = request.data.get('short_description'),
+        long_description = request.data.get('long_description'),
+        created_by = request.user,
+    )
+
+    for id in request.data.get('categories'):
+        course.categories.add(id)
+
+    course.save()
+
+    print(course)
+
     return Response({'to': 'yo'})
 
 @api_view(['GET'])
