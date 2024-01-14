@@ -15,6 +15,7 @@ def create_course(request):
 
     course = Course.objects.create(
         title=request.data.get('title'),
+        slug=slugify(request.data.get('title')),
         short_description = request.data.get('short_description'),
         long_description = request.data.get('long_description'),
         created_by = request.user,
