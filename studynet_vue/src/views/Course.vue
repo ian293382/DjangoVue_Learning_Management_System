@@ -36,39 +36,36 @@
 
                                     <div class="control">
                                         <label class="radio">
-                                            <input type="radio" :value="quiz.op1" v-model="selectedAnswer">
-                                            {{ quiz.op1 }}
+                                            <input type="radio" :value="quiz.op1" v-model="selectedAnswer"> {{ quiz.op1 }}
                                         </label>
                                     </div>
 
                                     <div class="control">
-                                        <label  class="radio">
-                                            <input type="radio" :value="quiz.op2" v-model="selectedAnswer">
-                                            {{ quiz.op2 }}
+                                        <label class="radio">
+                                            <input type="radio" :value="quiz.op2" v-model="selectedAnswer"> {{ quiz.op2 }}
                                         </label>
                                     </div>
 
                                     <div class="control">
-                                        <label  class="radio">
-                                            <input type="radio" :value="quiz.op3" v-model="selectedAnswer">
-                                            {{ quiz.op3 }}
+                                        <label class="radio">
+                                            <input type="radio" :value="quiz.op3" v-model="selectedAnswer"> {{ quiz.op3 }}
                                         </label>
                                     </div>
 
                                     <div class="control mt-4">
                                         <button class="button is-info" @click="submitQuiz">Submit</button>
                                     </div>
+
+                                    <template v-if="quizResult == 'correct'">
+                                        <div class="notification is-success mt-4">Correct :-D</div>
+                                    </template>
+
+                                    <template v-if="quizResult == 'incorrect'">
+                                        <div class="notification is-danger mt-4">Wrong :-( Please try again!</div>
+                                    </template>
                                 </template>
 
-                                <template v-if="quizResult =='correct'">
-                                    <div class="notification is-success mt-4">Correct :-D</div>
-                                </template>
-
-                                <template v-if="quizResult == 'incorrect'">
-                                    <div class="notification is-danger mt-4">Wrong :-( plz try again</div>
-                                </template>
-                                
-                                <template v-if="activeLesson.lesson_type ==='acticle'">
+                                <template  v-if="activeLesson.lesson_type === 'article'">
                                     <article 
                                         class="media box"
                                         v-for="comment in comments"
@@ -99,9 +96,11 @@
                                             </div>
                                         </div>
 
-                                        <div class="notification is-danger"
-                                        v-for="error in errors"
-                                        v-bind:key="error">
+                                        <div 
+                                            class="notification is-danger"
+                                            v-for="error in errors"
+                                            v-bind:key="error"
+                                        >
                                             {{ error }}
                                         </div>
 
@@ -112,7 +111,6 @@
                                         </div>
                                     </form>
                                 </template>
-                     
                             </template>
 
                             <template v-else>
@@ -153,18 +151,19 @@ export default {
         }
     },
     async mounted() {
-            console.log('mounted')
+        console.log('mounted')
 
-            const slug = this.$route.params.slug
+        const slug = this.$route.params.slug
 
-            await axios
-                .get(`/courses/${slug}/`)
-                .then(response => {
-                    console.log(response.data)
+        await axios
+            .get(`/courses/${slug}/`)
+            .then(response => {
+                console.log(response.data)
 
-                    this.course = response.data.course
-                    this.lessons = response.data.lessons
-                })
+                this.course = response.data.course
+                this.lessons = response.data.lessons
+            })
+        
         document.title = this.course.title + ' | StudyNet'
     },
     methods: {
@@ -187,45 +186,43 @@ export default {
             this.errors = []
 
             if (this.comment.name === '') {
-                this.errors.push('The name must be filled out ')
+                this.errors.push('The name must be filled out')
             }
 
             if (this.comment.content === '') {
-                this.errors.push('The content must be filled out ')
+                this.errors.push('The content must be filled out')
             }
 
             if (!this.errors.length) {
                 axios
-                .post(`/courses/${this.course.slug}/${this.activeLesson.slug}/`, this.comment)
-                .then(response => {
-                    this.comment.name = ''
-                    this.comment.content = ''
+                    .post(`/courses/${this.course.slug}/${this.activeLesson.slug}/`, this.comment)
+                    .then(response => {
+                        this.comment.name = ''
+                        this.comment.content = ''
 
-                    this.comments.push(response.data)
-                })
-                .catch(error => {
-                    console.log(error)
-                })
+                        this.comments.push(response.data)
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
             }
-            
-
-      
         },
         setActiveLesson(lesson) {
             this.activeLesson = lesson
 
-            if (lesson && lesson.lesson_type === 'quiz')  {
+            if (lesson.lesson_type === 'quiz') {
                 this.getQuiz()
             } else {
                 this.getComments()
             }
-           
         },
         getQuiz() {
-            axios.get(`/courses/${this.course.slug}/${this.activeLesson.slug}/get-quiz/`)
+            axios
+                .get(`/courses/${this.course.slug}/${this.activeLesson.slug}/get-quiz/`)
                 .then(response => {
-                    console.log(response.data);
-                    this.quiz = response.data;
+                    console.log(response.data)
+
+                    this.quiz = response.data
                 })
         },
         getComments() {
