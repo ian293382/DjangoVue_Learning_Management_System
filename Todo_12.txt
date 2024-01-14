@@ -3,4 +3,3 @@
 -DONE Create component for add comment
 -Done Create component for quiz
 -Done Clearn up the add _comment function
--Better api url base name
