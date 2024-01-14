@@ -1,3 +1,3 @@
 -Done Show active course in my account 
--Track lesson start
--Make it possible to mark lesson to done
+-Done Track lesson start
+-Done Make it possible to mark lesson to done
