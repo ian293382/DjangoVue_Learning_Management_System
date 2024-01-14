@@ -4,9 +4,11 @@
             <div class="hero-body has-text-centered">
                 <h1 class="title">{{ course.title }}</h1>
 
-                <p class="subtitle">
+                <router-link
+                    :to="{name: 'Author', params: {id: course.created_by.id}}"
+                 class="subtitle">
                   By {{ course.created_by.first_name + ` ` + course.created_by.last_name  }}
-                </p>
+                </router-link>
             </div>
         </div>
 
@@ -92,19 +94,21 @@ import CourseComment from '@/components/CourseComment';
 import AddComment from '@/components/AddComment';
 import Quiz from '@/components/Quiz';
 import Video from '@/components/Video';
+import router from '@/router';
 
 export default {
     components: {
-        CourseComment,
-        AddComment,
-        Quiz,
-        Video
-    },
+    CourseComment,
+    AddComment,
+    Quiz,
+    Video,
+    router
+},
     data() {
         return {
             course: {
                 created_by: {
-
+                    id: 0
                 },
             },
             lessons: [],
