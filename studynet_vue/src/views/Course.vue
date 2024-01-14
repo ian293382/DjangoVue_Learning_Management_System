@@ -36,6 +36,12 @@
                                         v-bind:quiz="quiz"/>
                                 </template>
 
+                                <template v-if="activeLesson.lesson_type === 'video'">
+                                    <Video
+                                        v-bind:video_id="activeLesson.video_id"
+                                    />
+                                </template>
+
                                 <template  v-if="activeLesson.lesson_type === 'article'">
                                     <!-- need bind compoments/CourseComment => props:['comment'] 
                                          add v-bind:comment = "comment" -->
@@ -78,6 +84,7 @@ import axios from 'axios'
 import CourseComment from '@/components/CourseComment';
 import AddComment from '@/components/AddComment';
 import Quiz from '@/components/Quiz';
+import Video from '@/components/Video';
 
 
 export default {
@@ -85,6 +92,7 @@ export default {
         CourseComment,
         AddComment,
         Quiz,
+        Video
     },
     data() {
         return {

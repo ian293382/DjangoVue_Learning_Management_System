@@ -1,0 +1,7 @@
+-DONE Embed Youtube videos 
+-Start progress tracking implementation
+    -DONE create new app
+    -DONE Database model
+    -DONE Vies
+    -DONE Urls 
+    -Check test data
