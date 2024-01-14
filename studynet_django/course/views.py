@@ -7,6 +7,12 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from .models import Course, Lesson, Comment,Category
 from .serializers import CourseListSerializer, CourseDetailSerializer, LessonsListSerializer, CommentSerializer,CategorySerializer , QuizSerializer, UserSerializer
 
+@api_view(['POST'])
+def create_course(request):
+    print(request.data)
+
+    return Response({'to': 'yo'})
+
 @api_view(['GET'])
 def get_quiz(request, course_slug, lesson_slug):
     lesson = Lesson.objects.get(slug= lesson_slug)
