@@ -46,8 +46,7 @@ def get_frontpage_courses(request):
 
 
 @api_view(['GET'])
-@authentication_classes([])
-@permission_classes([])
+
 def get_course(request, slug):
     course = Course.objects.get(slug=slug)
     course_serializer = CourseDetailSerializer(course)

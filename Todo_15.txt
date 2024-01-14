@@ -1,0 +1,3 @@
+-Add auther to courses
+-Author page
+-Link to author page
