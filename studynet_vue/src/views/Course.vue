@@ -74,35 +74,13 @@
                                      
                                         v-bind:comment="comment" 
                                     /> 
-                                    <form v-on:submit.prevent="submitComment()">
-                                        <div class="field">
-                                            <label class="label">Name</label>
-                                            <div class="control">
-                                                <input type="text" class="input" v-model="comment.name">
-                                            </div>
-                                        </div>
-
-                                        <div class="field">
-                                            <label class="label">Content</label>
-                                            <div class="control">
-                                                <textarea class="textarea" v-model="comment.content"></textarea>
-                                            </div>
-                                        </div>
-
-                                        <div 
-                                            class="notification is-danger"
-                                            v-for="error in errors"
-                                            v-bind:key="error"
-                                        >
-                                            {{ error }}
-                                        </div>
-
-                                        <div class="field">
-                                            <div class="control">
-                                                <button class="button is-link">Submit</button>
-                                            </div>
-                                        </div>
-                                    </form>
+                                    <!--  第一個bind 是對應下方的參數course 才知道路由 第二個 一樣元件那邊 v-bind pops ['activeLesson'] -->
+                                    <AddComment 
+                                        v-bind:course="course"
+                                        v-bind:activeLesson="activeLesson"
+                                        v-on:submitComment="submitComment" 
+                                    />
+                                    <!-- 送出表單需要lister 監聽 -->
                                 </template>
                             </template>
 
@@ -127,11 +105,13 @@
 import axios from 'axios'
 
 import CourseComment from '@/components/CourseComment';
+import AddComment from '@/components/AddComment';
 
 
 export default {
     components: {
         CourseComment,
+        AddComment,
     },
     data() {
         return {
@@ -142,11 +122,7 @@ export default {
             errors: [],
             quiz: {},
             selectedAnswer: '',
-            quizResult: null,
-            comment: {
-                name: '',
-                content: ''
-            }
+            quizResult: null
         }
     },
     async mounted() {
@@ -166,6 +142,9 @@ export default {
         document.title = this.course.title + ' | StudyNet'
     },
     methods: {
+        submitComment(comment) {
+            this.comments.push(comment)
+        },
         submitQuiz() {
             this.quizResult = null
 
@@ -177,33 +156,6 @@ export default {
                 }
             } else {
                 alert('Select answer first')
-            }
-        },
-        submitComment() {
-            console.log('submitComment')
-
-            this.errors = []
-
-            if (this.comment.name === '') {
-                this.errors.push('The name must be filled out')
-            }
-
-            if (this.comment.content === '') {
-                this.errors.push('The content must be filled out')
-            }
-
-            if (!this.errors.length) {
-                axios
-                    .post(`/courses/${this.course.slug}/${this.activeLesson.slug}/`, this.comment)
-                    .then(response => {
-                        this.comment.name = ''
-                        this.comment.content = ''
-
-                        this.comments.push(response.data)
-                    })
-                    .catch(error => {
-                        console.log(error)
-                    })
             }
         },
         setActiveLesson(lesson) {
