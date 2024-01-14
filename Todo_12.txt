@@ -1,5 +1,5 @@
--Better dates on comments
--Create component for comments
+-DONE Better dates on comments
+-DONE Create component for comments
 -Create component for add comment
 -Create component for quiz
 -Clearn up the add _comment function
