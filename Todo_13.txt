@@ -1,4 +1,4 @@
--Embed Youtube videos 
+-DONE Embed Youtube videos 
 -Start progress tracking implementation
     -create new app
     -Database model
