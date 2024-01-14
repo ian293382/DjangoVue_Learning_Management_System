@@ -27,6 +27,9 @@
                             <template v-if="activeLesson">
                                 <h2>{{ activeLesson.title }}</h2>
                                 
+                                <span class="tag is-warning" v-if="activity.status == 'started'" @click="markAsDone">Started (mark_as_done)</span>
+                                <span class="tag is-success" v-else >Done</span>
+                                <hr>
                                 {{ activeLesson.long_description }}
 
                                 <hr>
@@ -86,7 +89,6 @@ import AddComment from '@/components/AddComment';
 import Quiz from '@/components/Quiz';
 import Video from '@/components/Video';
 
-
 export default {
     components: {
         CourseComment,
@@ -102,6 +104,7 @@ export default {
             activeLesson: null,
             errors: [],
             quiz: {},
+            activity:{}
           
         }
     },
@@ -133,6 +136,26 @@ export default {
             } else {
                 this.getComments()
             }
+
+            this.trackStarted() 
+        },
+        trackStarted(){
+            axios
+              .post(`/activities/track_started/${this.$route.params.slug}/${this.activeLesson.slug}/`)
+              .then(response => {
+                console.log(response.data)
+                
+                this.activity = response.data
+            })
+        },
+        markAsDone(){
+            axios
+              .post(`/activities/mark_as_done/${this.$route.params.slug}/${this.activeLesson.slug}/`)
+              .then(response => {
+                console.log(response.data)
+                
+                this.activity = response.data
+            })
         },
         getQuiz() {
             axios
