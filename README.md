@@ -24,5 +24,5 @@ Studynet 是一個基於 Django 和 Vue.js 的學習平台，旨在提供使用�
 4. **遷移資料庫：** 在 Django 專案目錄下，運行 `python manage.py migrate` 遷移資料庫。
 5. **啟動後端伺服器：** 在 Django 專案目錄下，運行 `python manage.py runserver` 啟動後端伺服器。
 6. **啟動前端伺服器：** 在 `studynet_vue` 目錄下，運行 `npm run serve` 啟動前端伺服器。
+您可以在瀏覽器中訪問 [http://localhost:8080] 以及在後端開起伺服器 (http://localhost:8080) 來使用 Studynet 學習平台。
 
-現在，您可以在瀏覽器中訪問 [http://localhost:8080](http://localhost:8080) 來使用 Studynet 學習平台。
