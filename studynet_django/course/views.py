@@ -11,13 +11,18 @@ from .serializers import CourseListSerializer, CourseDetailSerializer, LessonsLi
 
 @api_view(['POST'])
 def create_course(request):
-    print(request.data)
+
+    status = request.data.get('status')
+
+    if status == 'published':
+        status = 'draft'
 
     course = Course.objects.create(
         title=request.data.get('title'),
         slug=slugify(request.data.get('title')),
         short_description=request.data.get('short_description'),
         long_description=request.data.get('long_description'),
+        status=status,
         created_by=request.user
     )
 
@@ -26,9 +31,7 @@ def create_course(request):
 
     course.save()
 
-    print(course)
-
-    return Response({'yo': 'yo'})
+    return Response({'yo': 'yo'}) 
 
 
 @api_view(['GET'])

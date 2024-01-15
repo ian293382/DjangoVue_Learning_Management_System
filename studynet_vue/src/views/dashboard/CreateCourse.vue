@@ -7,7 +7,7 @@
         </div>
 
         <section class="section">
-            <form v-on:submit.prevent="submitForm">
+         
                 <div class="field">
                     <label>Title</label>
                     <input type="text" class="input" v-model="form.title">
@@ -37,10 +37,11 @@
                     </div>
                 </div>
 
-                <div class="field">
-                    <button class="button is-success">Submit</button>
+                <div class="field buttons">
+                    <button class="button is-success" @click="submitForm('draft')">Save as draft</button>
+                    <button class="button is-info" @click="submitForm('review')">Submit for review</button>
                 </div>
-            </form>
+      
         </section>
     </div>
 </template>
@@ -55,6 +56,7 @@ export default {
                 short_description: '',
                 long_description: '',
                 categories: [],
+                status: '',
             },
             categories: [],
         }
@@ -72,9 +74,12 @@ export default {
                     this.categories = response.data
                 })
         },
-        submitForm() {
+        submitForm(status) {
             console.log('submitForm')
             console.log(this.form)
+
+            this.form.status = status
+
             axios
                 .post('courses/create/', this.form)
                 .then(response => {
