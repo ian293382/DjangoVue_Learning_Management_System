@@ -1,3 +1,4 @@
+from random import randint
 from django.contrib.auth.models import User
 from django.shortcuts import render
 
@@ -11,7 +12,6 @@ from .serializers import CourseListSerializer, CourseDetailSerializer, LessonsLi
 
 @api_view(['POST'])
 def create_course(request):
-
     status = request.data.get('status')
 
     if status == 'published':
@@ -29,9 +29,19 @@ def create_course(request):
     for id in request.data.get('categories'):
         course.categories.add(id)
 
-    course.save()
-
-    return Response({'yo': 'yo'}) 
+    course.save() 
+    # Lesson
+    for lesson in request.data.get('lessons'):
+        tmp_lesson = Lesson.objects.create(
+            course = course,
+            title = lesson.get('title'),
+            slug='%s-%s' % (slugify(lesson.get('title')), randint(1000, 100000)),
+            short_description = lesson.get('short_description'),
+            long_description = lesson.get('long_description'),
+            status = Lesson.DRAFT
+        )
+       
+    return Response({'course_id': course.id}) 
 
 
 @api_view(['GET'])
