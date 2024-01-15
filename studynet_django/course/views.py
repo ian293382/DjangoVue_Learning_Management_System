@@ -16,9 +16,9 @@ def create_course(request):
     course = Course.objects.create(
         title=request.data.get('title'),
         slug=slugify(request.data.get('title')),
-        short_description = request.data.get('short_description'),
-        long_description = request.data.get('long_description'),
-        created_by = request.user,
+        short_description=request.data.get('short_description'),
+        long_description=request.data.get('long_description'),
+        created_by=request.user
     )
 
     for id in request.data.get('categories'):
@@ -28,7 +28,8 @@ def create_course(request):
 
     print(course)
 
-    return Response({'to': 'yo'})
+    return Response({'yo': 'yo'})
+
 
 @api_view(['GET'])
 def get_quiz(request, course_slug, lesson_slug):
