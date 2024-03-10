@@ -25,4 +25,4 @@ pnpm-debug.log*
 *.sw?
 
 
-secret_key.txt
+*.secret_key.txt
