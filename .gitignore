@@ -23,3 +23,6 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+
+*/studynet_django/studynet_django/secret_key.txt
