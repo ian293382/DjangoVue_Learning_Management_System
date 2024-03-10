@@ -26,3 +26,4 @@ pnpm-debug.log*
 
 
 *.secret_key.txt
+secret_key.txt
