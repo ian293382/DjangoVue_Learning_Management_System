@@ -25,4 +25,4 @@ pnpm-debug.log*
 *.sw?
 
 
-*/studynet_django/studynet_django/secret_key.txt
+secret_key.txt
